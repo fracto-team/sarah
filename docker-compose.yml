@@ -50,6 +50,7 @@ services:
         command:
             - --api
             - --log.level=DEBUG
+            - --serversTransport.insecureSkipVerify=true
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.traefik.entrypoints=web"
