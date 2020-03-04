@@ -159,4 +159,4 @@ services:
         depends_on:
           - redis
           - postgres
-          - traefik
+
