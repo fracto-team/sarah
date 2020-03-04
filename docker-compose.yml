@@ -59,7 +59,7 @@ services:
             - "traefik.http.routers.traefik_secure.rule=Host(`${TRAEFIK_MONITORING_HOST}`)"
             - "traefik.http.routers.traefik_secure.tls.certresolver=letsencrypt"
             - "traefik.http.routers.traefik_secure.service=api@internal"
-            - "traefik.http.routers.traefik_secure.auth.basic.users=${TRAEFIK_MONITOING_AUTH_BASIC}"
+            - "traefik.http.routers.traefik_secure.auth.basic.users=${TRAEFIK_MONITORING_AUTH_BASIC}"
             - "traefik.docker.network=${TRAEFIK_NETWORK}"
         ports:
             - "${TRAEFIK_SSH_PORT}:2222"
