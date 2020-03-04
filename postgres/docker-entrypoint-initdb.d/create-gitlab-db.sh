@@ -10,6 +10,7 @@
 # EOSQL
 
 if [ "$GITLAB_POSTGRES_INIT" == 'true' ]; then
+    echo "Initializing gitlab postgres database..."
 	psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
 		CREATE USER $GITLAB_POSTGRES_USER WITH PASSWORD '$GITLAB_POSTGRES_PASSWORD';
 		CREATE DATABASE $GITLAB_POSTGRES_DB;
