@@ -141,9 +141,9 @@ services:
             - "traefik.http.routers.gitlab.middlewares=redirect@file"
             - "traefik.http.routers.gitlab_secure.entrypoints=web-secure"
             - "traefik.http.routers.gitlab_secure.rule=Host(`${GITLAB_HOSTNAME}`)"
-            - "traefik.http.routers.gitlab.tls.certresolver=letsencrypt"
+            - "traefik.http.routers.gitlab_secure.tls.certresolver=letsencrypt"
             - "traefik.http.services.gitlab.loadbalancer.server.port=80"
-            - "traefik.docker.network=backend"
+            - "traefik.docker.network=${TRAEFIK_NETWORK}"
             # Can't filter TCP traffic on SNI, see link below
             # https://community.containo.us/t/routing-ssh-traffic-with-traefik-v2/717/6
             - "traefik.tcp.routers.gitlab-ssh.rule=HostSNI(`*`)"
