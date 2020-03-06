@@ -201,3 +201,21 @@ services:
         networks:
             - backend
             - frontend
+    portainer:
+        image: portainer/portainer
+        container_name: "portainer"
+        volumes:
+            - ${PORTAINER_DOCKER_SOCK}:/var/run/docker.sock
+            - ${PORTAINER_DATA_PATH}:/data
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.portainer.entrypoints=web"
+            - "traefik.http.routers.portainer.rule=Host(`${PORTAINER_DOMAIN}`)"
+            - "traefik.http.routers.portainer.middlewares=redirect@file"
+            - "traefik.http.routers.portainer_secure.entrypoints=web-secure"
+            - "traefik.http.routers.portainer_secure.rule=Host(`${PORTAINER_DOMAIN}`)"
+            - "traefik.http.routers.portainer_secure.tls.certresolver=letsencrypt"
+            - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+            - "traefik.docker.network=${TRAEFIK_NETWORK}"
+        networks:
+            - backend
